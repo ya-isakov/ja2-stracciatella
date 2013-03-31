@@ -4,6 +4,8 @@
 #include "Item_Types.h"
 #include "Types.h"
 
+#include <vector>
+
 extern wchar_t ShortItemNames[MAXITEMS][80];
 extern wchar_t ItemNames[MAXITEMS][80];
 
@@ -1743,5 +1745,9 @@ enum
 	TCTL_MSG__IRON_MAN_CANT_SAVE_NOW,
 	TCTL_MSG__CANNOT_SAVE_DURING_COMBAT,
 };
+
+
+/** Get list of strings which contains sets of characters from many lanuguages. */
+std::vector<const wchar_t*> getCharacterSets();
 
 #endif

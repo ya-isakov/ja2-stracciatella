@@ -24,6 +24,8 @@
 #include	"Text.h"
 #include "GameRes.h"
 
+#include <boost/foreach.hpp>
+
 
 #define				GAME_SETTINGS_FILE		"../Ja2.set"
 
@@ -233,6 +235,11 @@ void DisplayGameSettings( )
 	{
 		ScreenMsg(FONT_MCOLOR_LTYELLOW, MSG_INTERFACE, gzLateLocalizedString[STR_LATE_56], CurrentPlayerProgressPercentage(), HighestPlayerProgressPercentage());
 	}
+
+  BOOST_FOREACH(const wchar_t *str, getCharacterSets())
+  {
+    ScreenMsg(FONT_MCOLOR_LTYELLOW, MSG_INTERFACE, L"%ls", str);
+  }
 }
 
 
