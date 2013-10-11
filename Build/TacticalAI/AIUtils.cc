@@ -19,6 +19,9 @@
 #include "Lighting.h"
 #include "Soldier_Create.h"
 
+#include "ContentManager.h"
+#include "GameInstance.h"
+#include "WeaponModels.h"
 
 //
 // CJC's DG->JA2 conversion notes
@@ -63,7 +66,7 @@ UINT16 MovementMode[LAST_MOVEMENT_ACTION + 1][NUM_URGENCY_STATES] =
 	{RUNNING,	 RUNNING,  RUNNING},	// AI_ACTION_MOVE_TO_CLIMB
 };
 
-INT8 OKToAttack(SOLDIERTYPE * pSoldier, int target)
+INT8 OKToAttack(const SOLDIERTYPE * pSoldier, int target)
 {
 	// can't shoot yourself
 	if (target == pSoldier->sGridNo)
@@ -1930,7 +1933,7 @@ INT32 CalcManThreatValue( SOLDIERTYPE *pEnemy, INT16 sMyGrid, UINT8 ubReduceForC
 			if ( Item[ pEnemy->inv[HANDPOS].usItem ].usItemClass & IC_WEAPON )
 			{
 				// ADD the deadliness of the item(weapon) he's holding (0-50)
-				iThreatValue += Weapon[pEnemy->inv[HANDPOS].usItem].ubDeadliness;
+				iThreatValue += GCM->getWeapon(pEnemy->inv[HANDPOS].usItem)->ubDeadliness;
 			}
 		}
 
@@ -2128,7 +2131,7 @@ UINT8 GetTraversalQuoteActionID( INT8 bDirection )
 	}
 }
 
-UINT8 SoldierDifficultyLevel( SOLDIERTYPE * pSoldier )
+UINT8 SoldierDifficultyLevel( const SOLDIERTYPE * pSoldier )
 {
 	INT8 bDifficultyBase;
 	INT8 bDifficulty;
@@ -2238,7 +2241,7 @@ BOOLEAN ValidCreatureTurn( SOLDIERTYPE * pCreature, INT8 bNewDirection )
 	return( TRUE );
 }
 
-INT32 RangeChangeDesire( SOLDIERTYPE * pSoldier )
+INT32 RangeChangeDesire( const SOLDIERTYPE * pSoldier )
 {
 	INT32 iRangeFactorMultiplier;
 

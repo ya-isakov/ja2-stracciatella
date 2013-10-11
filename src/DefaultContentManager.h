@@ -1,10 +1,12 @@
 #pragma once
 
+#include <map>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
 #include "ContentManager.h"
+#include "StringEncodingTypes.h"
 
 class LibraryDB;
 
@@ -13,9 +15,13 @@ class DefaultContentManager : public ContentManager
 public:
 
   DefaultContentManager(const std::string &configFolder, const std::string &configPath,
-                        const std::string &gameResRootPath);
+                        const std::string &gameResRootPath,
+                        const std::string &externalizedDataPath);
 
   ~DefaultContentManager();
+
+  /** Load the game data. */
+  bool loadGameData();
 
   /** Get map file path. */
   virtual std::string getMapPath(const char *mapName) const;
@@ -63,13 +69,53 @@ public:
   const std::string& getDataDir() { return m_dataDir; }
   const std::string& getTileDir() { return m_tileDir; }
 
+  const std::string& getExternalizedDataDir() { return m_externalizedDataPath; }
+
+  /** Get folder for saved games. */
+  virtual std::string getSavedGamesFolder() const;
+
+  /** Load encrypted string from game resource file. */
+  virtual void loadEncryptedString(const char *fileName, wchar_t* DestString, uint32_t seek_chars, uint32_t read_chars) const;
+
+  virtual void loadEncryptedString(SGPFile* const File, wchar_t* DestString, uint32_t const seek_chars, uint32_t const read_chars) const;
+
+  /** Load dialogue quote from file. */
+  virtual UTF8String* loadDialogQuoteFromFile(const char* filename, int quote_number);
+
+  /** Load all dialogue quotes for a character. */
+  void loadAllDialogQuotes(STRING_ENC_TYPE encType, const char* filename, std::vector<UTF8String*> &quotes) const;
+
+  /** Get weapons with the give index. */
+  virtual const WeaponModel* getWeapon(uint16_t index);
+  virtual const MagazineModel* getMagazine(uint16_t index);
+
+  virtual const CalibreModel* getCalibre(uint8_t index);
+  virtual const AmmoTypeModel* getAmmoType(uint8_t index);
+
 protected:
   std::string m_dataDir;
   std::string m_tileDir;
   std::string m_configFolder;
   std::string m_gameResRootPath;
+  std::string m_externalizedDataPath;
+
+  std::vector<WeaponModel*> m_weapons;
+  std::vector<MagazineModel*> m_magazines;
+
+  std::vector<const CalibreModel*> m_calibres;
+  std::vector<AmmoTypeModel*> m_ammoTypes;
+
+  /** Mapping of calibre names to objects. */
+  std::map<std::string, const CalibreModel*> m_calibreMap;
+
+  std::map<std::string, const AmmoTypeModel*> m_ammoTypeMap;
 
   LibraryDB *m_libraryDB;
+
+  bool loadWeapons();
+  bool loadMagazines();
+  bool loadCalibres();
+  bool loadAmmoTypes();
 };
 
 class LibraryFileNotFoundException : public std::runtime_error

@@ -47,6 +47,8 @@
 
 #include "ContentManager.h"
 #include "GameInstance.h"
+#include "content/ContentMercs.h"
+#include "WeaponModels.h"
 
 extern BOOLEAN gfProfileDataLoaded;
 
@@ -129,7 +131,7 @@ void LoadMercProfiles()
 			MERCPROFILESTRUCT& p = gMercProfiles[i];
 
 			// If the dialogue exists for the merc, allow the merc to be hired
-			p.bMercStatus = GCM->doesGameResExists(GetDialogueDataFilename(i, 0, FALSE)) ? 0 : MERC_HAS_NO_TEXT_FILE;
+			p.bMercStatus = Content::canMercBeHired(GCM, i) ? 0 : MERC_HAS_NO_TEXT_FILE;
 
 			p.sMedicalDepositAmount = p.bMedicalDeposit ? CalcMedicalDeposit(p) : 0;
 
@@ -174,7 +176,7 @@ void LoadMercProfiles()
 				if (item_id == NOTHING) continue;
 				INVTYPE const& item = Item[item_id];
 
-				if (item.usItemClass & IC_GUN)    p.bMainGunAttractiveness = Weapon[item_id].ubDeadliness;
+				if (item.usItemClass & IC_GUN)    p.bMainGunAttractiveness = GCM->getWeapon(item_id)->ubDeadliness;
 				if (item.usItemClass & IC_ARMOUR) p.bArmourAttractiveness  = Armour[item.ubClassIndex].ubProtection;
 
 				p.usOptionalGearCost += item.usPrice;
