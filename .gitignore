@@ -4,6 +4,7 @@
 *.o
 *.pdb
 *~
+./ja2-mod-*.bat
 .DS_Store
 .cproject
 .project
@@ -16,7 +17,8 @@ _build/solution-vs10e/Debug
 _build/solution-vs10e/Release
 ja2
 ja2-last-strac
-./ja2-mod-*.bat
+ja2-mod-from-russia-with-love.bat
+ja2-mod-nightops-maps.bat
 ja2.log
 release-*
 stderr.txt
