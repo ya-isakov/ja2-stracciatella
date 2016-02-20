@@ -452,6 +452,8 @@ static void ScrollJA2Background(INT16 sScrollXIncrement, INT16 sScrollYIncrement
 	r.w = gsVIEWPORT_END_X - gsVIEWPORT_START_X;
 	r.h = gsVIEWPORT_WINDOW_END_Y - gsVIEWPORT_WINDOW_START_Y;
 	SDL_RenderCopy(GameRenderer, screenTexture, &r, &r);
+
+	SDL_DestroyTexture(screenTexture);
 }
 
 
@@ -729,6 +731,7 @@ void RefreshScreen(void)
   	SDL_RenderCopy(GameRenderer, screenTexture, &combinedRect, &combinedRect);
   }
 #endif
+	SDL_DestroyTexture(screenTexture);
 
 	SDL_RenderPresent(GameRenderer);
 
