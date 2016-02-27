@@ -694,6 +694,9 @@ void RefreshScreen(void)
 
 	MouseBackground = dst;
 
+	#ifdef __ANDROID__
+		gfForceFullScreenRefresh = true;
+	#endif
 	if (gfForceFullScreenRefresh)
 	{
 		SDL_RenderCopy(GameRenderer, screenTexture, NULL, NULL);
