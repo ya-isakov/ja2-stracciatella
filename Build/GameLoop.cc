@@ -378,10 +378,8 @@ void HandleShortCutExitState()
 	// Use YES/NO pop up box, setup for particular screen
 	switch (guiCurrentScreen)
 	{
-#ifdef JA2BETAVERSION
 		case AIVIEWER_SCREEN:
 		case QUEST_DEBUG_SCREEN:
-#endif
 		case DEBUG_SCREEN:
 		case EDIT_SCREEN:
 		case ERROR_SCREEN:

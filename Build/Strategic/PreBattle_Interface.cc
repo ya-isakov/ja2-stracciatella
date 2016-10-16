@@ -252,7 +252,6 @@ void InitPreBattleInterface(GROUP* const battle_group, bool const persistent_pbi
 			SetFactTrue(FACT_FIRST_BATTLE_BEING_FOUGHT);
 		}
 
-#ifdef JA2BETAVERSION
 		/* If we are currently in the AI Viewer development utility, then remove it
 		 * first. It automatically returns to the mapscreen upon removal, which is
 		 * where we want to go. */
@@ -265,7 +264,6 @@ void InitPreBattleInterface(GROUP* const battle_group, bool const persistent_pbi
 			gfUsePersistantPBI                           = TRUE;
 			return;
 		}
-#endif
 
 		// ATE: Added check for persistent_pbi if !battle_group
 		// Searched code and saw that this condition only happens for creatures

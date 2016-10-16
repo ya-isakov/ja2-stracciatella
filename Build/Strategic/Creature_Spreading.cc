@@ -276,14 +276,10 @@ void InitCreatureQuest()
 		return; //already active!
 	}
 
-	#ifdef JA2BETAVERSION
 	if( guiCurrentScreen != AIVIEWER_SCREEN )
 	{
 		fPlayMeanwhile = TRUE;
 	}
-	#else
-		fPlayMeanwhile = TRUE;
-	#endif
 
 	if( fPlayMeanwhile && !gfCreatureMeanwhileScenePlayed )
 	{
@@ -314,12 +310,10 @@ void InitCreatureQuest()
 	fMineInfectible[2] = IsMineInfectible(MINE_ALMA);
 	fMineInfectible[3] = IsMineInfectible(MINE_GRUMM);
 
-	#ifdef JA2BETAVERSION
 	if( guiCurrentScreen == AIVIEWER_SCREEN )
 	{ //If in the AIViewer, allow any mine to get infected
 		memset( fMineInfectible, 1, sizeof( BOOLEAN ) * 4 );
 	}
-	#endif
 
 	iNumMinesInfectible = fMineInfectible[0] + fMineInfectible[1] + fMineInfectible[2] + fMineInfectible[3];
 

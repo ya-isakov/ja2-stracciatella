@@ -765,12 +765,10 @@ static BOOLEAN CheckConditionsForBattle(GROUP* pGroup)
 				pGroup->ubSectorX == gWorldSectorX && pGroup->ubSectorY == gWorldSectorY &&
 				curr )
 		{ //Reinforcements have arrived!
-			#ifdef JA2BETAVERSION
 			if( guiCurrentScreen == AIVIEWER_SCREEN )
 			{
 				gfExitViewer = TRUE;
 			}
-			#endif
 			if( gTacticalStatus.fEnemyInSector )
 			{
 				HandleArrivalOfReinforcements( pGroup );
@@ -931,10 +929,9 @@ static BOOLEAN CheckConditionsForBattle(GROUP* pGroup)
 			}
 		}
 
-		#ifdef JA2BETAVERSION
-			if( guiCurrentScreen == AIVIEWER_SCREEN )
-				gfExitViewer = TRUE;
-		#endif
+		if( guiCurrentScreen == AIVIEWER_SCREEN ) {
+			gfExitViewer = TRUE;
+		}
 
 		if( pPlayerDialogGroup )
 		{

@@ -1,5 +1,3 @@
-#ifdef JA2BETAVERSION
-
 #include "AI_Viewer.h"
 #include "Font.h"
 #include "HImage.h"
@@ -1930,6 +1928,3 @@ static void PrintDetailedEnemiesInSectorInfo(INT32 iScreenX, INT32 iScreenY, UIN
 		}
 	}
 }
-
-
-#endif

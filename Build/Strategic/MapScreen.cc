@@ -2909,9 +2909,10 @@ static void HandleModNone(UINT32 const key, MapEvent& new_event)
 		case SDLK_F5:
 		case SDLK_F6: ChangeCharacterListSortMethod(key - SDLK_F1); break;
 
-#if defined JA2BETAVERSION
-		case SDLK_F12: new_event = MAP_EVENT_VIEWAI; break;
-#endif
+		case SDLK_F12:
+			SetPendingNewScreen( AIVIEWER_SCREEN );
+			CreateDestroyMapInvButton();
+			break;
 
 		case '+':
 		case '=':
