@@ -55,13 +55,8 @@
 #include "VSurface.h"
 #include "UILayout.h"
 
-
 extern BOOLEAN gfDelayAutoResolveStart;
-
-#ifdef JA2BETAVERSION
 extern BOOLEAN gfExitViewer;
-#endif
-
 
 BOOLEAN gfTacticalTraversal = FALSE;
 GROUP *gpTacticalTraversalGroup = NULL;

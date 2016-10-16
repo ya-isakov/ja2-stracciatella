@@ -1,7 +1,7 @@
 #include "AI_Viewer.h"
 #include "Font.h"
 #include "HImage.h"
-#include "Local.h"
+#include "Directories.h"
 #include "English.h"
 #include "Strategic_Mines.h"
 #include "Timer_Control.h"
@@ -37,7 +37,11 @@
 #include "Video.h"
 #include "WordWrap.h"
 #include "SGP.h"
+#include "UILayout.h"
 
+#include "GameInstance.h"
+#include "ContentManager.h"
+#include "DefaultContentManager.h"
 
 #define VIEWER_LEFT			15
 #define VIEWER_TOP			15
@@ -225,22 +229,22 @@ static BOOLEAN CreateAIViewer(void)
 {
 	wchar_t str[6];
 
-	//Check to see if data exists.
-	if (!FileExists("devtools/arulco.sti") ||
-			!FileExists("devtools/icons.sti")  ||
-			!FileExists("devtools/smcheckbox.sti"))
-	{
-		SLOGW(DEBUG_TAG_SAI, "AIViewer missing data.  Aborted.");
-		gfExitViewer = FALSE;
-		gfViewerEntry = TRUE;
-		return FALSE;
-	}
+//	//Check to see if data exists.
+//	if (!GCM->doesGameResExists(INTERFACEDIR "/b_map.pcx") ||
+//			!GCM->doesGameResExists(EDITORDIR "/icons.sti")  ||
+//			!GCM->doesGameResExists(EDITORDIR "/smcheckbox.sti"))
+//	{
+//		SLOGW(DEBUG_TAG_SAI, "AIViewer missing data.  Aborted.");
+//		gfExitViewer = FALSE;
+//		gfViewerEntry = TRUE;
+//		return FALSE;
+//	}
 
 	DisableScrollMessages();
 	giSaveTCMode = giTimeCompressMode;
 
-	guiMapGraphicID = AddVideoObjectFromFile("devtools/arulco.sti");
-	guiMapIconsID   = AddVideoObjectFromFile("devtools/icons.sti");
+	guiMapGraphicID = AddVideoObjectFromFile(INTERFACEDIR "/b_map.pcx");
+	guiMapIconsID   = AddVideoObjectFromFile(EDITORDIR "icons.sti");
 
 	gfRenderViewer = TRUE;
 
@@ -266,7 +270,7 @@ static BOOLEAN CreateAIViewer(void)
 	iViewerButton[SPREAD_CREATURES]     = CreateTextButton(L"Spread Creatures",     FONT12POINT1, FONT_BLACK, FONT_BLACK, VIEWER_RIGHT + 20, 150, 120, 18, MSYS_PRIORITY_HIGH, SpreadCreaturesCallback);
 	iViewerButton[CREATURE_ATTACK]      = CreateTextButton(L"Creature Attack",      FONT12POINT1, FONT_BLACK, FONT_BLACK, VIEWER_RIGHT + 20, 175, 120, 18, MSYS_PRIORITY_HIGH, CreatureAttackCallback);
 
-	iViewerButton[QUEEN_AWAKE_TOGGLE] = CreateCheckBoxButton(104, VIEWER_BOTTOM + 22, "devtools/smcheckbox.sti", MSYS_PRIORITY_HIGH, ToggleQueenAwake);
+	iViewerButton[QUEEN_AWAKE_TOGGLE] = CreateCheckBoxButton(104, VIEWER_BOTTOM + 22, EDITORDIR "smcheckbox.sti", MSYS_PRIORITY_HIGH, ToggleQueenAwake);
 	if( gfQueenAIAwake )
 	{
 		iViewerButton[QUEEN_AWAKE_TOGGLE]->uiFlags |= BUTTON_CLICKED_ON;
@@ -834,7 +838,6 @@ static void HandleViewerInput(void)
 					if( Event.usKeyState & ALT_DOWN )
 					{
 						gfExitViewer = TRUE;
-						gfProgramIsRunning = FALSE;
 					}
 					break;
 				case 'm':

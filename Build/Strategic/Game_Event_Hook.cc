@@ -17,11 +17,9 @@
 #include "Strategic_Movement.h"
 #include "Assignments.h"
 #include "Strategic_Mines.h"
-#include "Strategic_Town_Loyalty.h"
 #include "Map_Screen_Interface.h"
 #include "Map_Screen_Helicopter.h"
 #include "Scheduling.h"
-#include "BobbyRGuns.h"
 #include "Arms_Dealer_Init.h"
 #include "Air_Raid.h"
 #include "Meanwhile.h"
@@ -32,14 +30,8 @@
 #include "Merc_Contract.h"
 #include "Strategic_Status.h"
 #include "Soldier_Profile.h"
-#include "Laptop.h"
 #include "Campaign.h"
-#include "Debug.h"
-
-#ifdef JA2BETAVERSION
-#	include "JAScreens.h"
-#	include "ScreenIDs.h"
-#endif
+#include "JAScreens.h"
 
 extern UINT32	guiTimeStampOfCurrentlyExecutingEvent;
 extern BOOLEAN gfPreventDeletionOfAnyEvent;

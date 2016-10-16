@@ -61,10 +61,10 @@ GROUP *gpGroupList;
 static GROUP* gpPendingSimultaneousGroup = NULL;
 
 #ifdef JA2BETAVERSION
-	extern BOOLEAN gfExitViewer;
 static void ValidateGroups(GROUP const&);
 #endif
 
+extern BOOLEAN gfExitViewer;
 extern BOOLEAN gubNumAwareBattles;
 extern INT8 SquadMovementGroups[ ];
 extern INT8 gubVehicleMovementGroups[ ];

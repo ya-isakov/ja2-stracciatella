@@ -272,10 +272,7 @@ enum MapEvent
 	MAP_EVENT_CLICK_SECTOR,
 	MAP_EVENT_PLOT_PATH,
 	MAP_EVENT_CANCEL_PATH,
-
-#ifdef JA2BETAVERSION
 	MAP_EVENT_VIEWAI
-#endif
 };
 
 
@@ -2637,13 +2634,10 @@ static UINT32 HandleMapUI(void)
 			}
 			break;
 
-//Kris -- added hook so I can access AIView in non-release mode.
-#ifdef JA2BETAVERSION
 		case MAP_EVENT_VIEWAI:
 			SetPendingNewScreen( AIVIEWER_SCREEN );
 			CreateDestroyMapInvButton();
 			break;
-#endif
 	}
 
 
@@ -2910,9 +2904,7 @@ static void HandleModNone(UINT32 const key, MapEvent& new_event)
 		case SDLK_F6: ChangeCharacterListSortMethod(key - SDLK_F1); break;
 
 		case SDLK_F12:
-			SetPendingNewScreen( AIVIEWER_SCREEN );
-			CreateDestroyMapInvButton();
-			break;
+			new_event = MAP_EVENT_VIEWAI; break;
 
 		case '+':
 		case '=':

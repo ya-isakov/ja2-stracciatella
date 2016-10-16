@@ -48,9 +48,7 @@ Screens const GameScreens[] =
 	{ NULL,                 NULL,                        NULL                     },
 	{ NULL,                 IntroScreenHandle,           NULL                     },
 	{ NULL,                 CreditScreenHandle,          NULL                     },
-#ifdef JA2BETAVERSION
 	{ AIViewerScreenInit,   AIViewerScreenHandle,        NULL                     },
-#endif
 	{ QuestDebugScreenInit, QuestDebugScreenHandle,      NULL                     }
 };
 
