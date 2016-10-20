@@ -223,7 +223,7 @@ add_custom_templated_target("uninstall")
 macro(add_vagrant_build_target NAME BOX TARGET ARGS)
     add_custom_target(${NAME})
     add_custom_command(TARGET ${NAME}
-            COMMAND vagrant up && vagrant ssh -c "sh /tmp/ja2-stracciatella/_build/buildboxes/common/build.sh '${TARGET}' '${ARGS}'" && vagrant destroy -f
+            COMMAND vagrant destroy -f && vagrant up && vagrant ssh -c "sh /tmp/ja2-stracciatella/_build/buildboxes/common/build.sh '${TARGET}' '${ARGS}'" && vagrant destroy -f
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/_build/buildboxes/${BOX})
 endmacro(add_vagrant_build_target)
 
