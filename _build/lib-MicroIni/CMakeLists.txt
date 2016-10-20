@@ -12,7 +12,7 @@ endif()
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 # option for choosing the build type (shared or static)
-option(BUILD_SHARED_LIBS "TRUE to build MicroIni as a shared library, FALSE to build it as a static library" TRUE)
+option(BUILD_SHARED_LIBS "TRUE to build MicroIni as a shared library, FALSE to build it as a static library" FALSE)
 
 # option for building the example
 option(BUILD_EXAMPLE "TRUE to build the example, FALSE to ignore it" FALSE)
